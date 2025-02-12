@@ -11,7 +11,7 @@ router.use((req, res, next) => {
 // routes
 router.get("/", (req, res) => {
   res.cookie("token", "12345abcd");
-  res.cookie("user", "12345abcd");
+  res.cookie("user", "admin");
   res.send("administrator index");
 });
 

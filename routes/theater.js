@@ -3,7 +3,8 @@ const router = express.Router();
 
 // routes
 router.get("/", (req, res) => {
-  res.send("theater index");
+  const { user = "No-name", token = "" } = req.cookies;
+  res.send(`Hallo  ${user} token anda adalah ${token}`);
 });
 
 router.get("/create", (req, res) => {
