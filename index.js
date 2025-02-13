@@ -10,9 +10,19 @@ const port = 3000;
 // mideleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cookieParser());
+app.use(cookieParser("Ulagay123"));
 
-// define routes
+// define
+app.get("/signingcookie", (req, res) => {
+  res.cookie("user", "ulagay-123", { signed: true });
+  res.send("cookie berhasil di set");
+});
+
+app.get("/verifycookie", (req, res) => {
+  const cookie = req.signedCookies;
+  res.send(cookie);
+});
+
 app.use("/admin", require("./routes/admin"));
 app.use("/theater", require("./routes/theater"));
 app.use("/movies", require("./routes/movies"));
