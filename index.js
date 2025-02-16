@@ -43,6 +43,16 @@ app.get("/count", (req, res) => {
   res.send(`count: ${req.session.count}`);
 });
 
+app.get("/register", (req, res) => {
+  const { username = "Anonim" } = req.query;
+  req.session.username = username;
+  res.redirect("/dashboard");
+});
+
+app.get("/dashboard", (req, res) => {
+  res.send(`Welcome, ${req.session.username}`);
+});
+
 app.use("/admin", require("./routes/admin"));
 app.use("/theater", require("./routes/theater"));
 app.use("/movies", require("./routes/movies"));
